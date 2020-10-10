@@ -4,10 +4,6 @@ Input method editor using asyncomplete.
 
 ![](https://raw.githubusercontent.com/mattn/asyncomplete-skk.vim/main/misc/screenshot.gif)
 
-## Usage
-
-Enable SKK input
-
 ## Requirements
 
 * [skk-cli](https://github.com/mattn/skk-cli)
