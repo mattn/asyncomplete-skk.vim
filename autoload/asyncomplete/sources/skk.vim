@@ -32,7 +32,7 @@ function! s:completor(opt, ctx) abort
   endif
   let l:typed = a:ctx['typed']
   let l:typed = getline('.')
-  let l:startcol = match(l:typed, '[a-zA-Z]\+$')
+  let l:startcol = match(l:typed, '[a-zA-Z-_.]\+$')
   if l:startcol == -1
     return
   endif
@@ -55,7 +55,7 @@ function! s:filter(matches, startcol, base) abort
 endfunction
 
 function! s:triggers() abort
-  return sort(map(range(char2nr('a'), char2nr('z')), {k, v -> nr2char(v)}) + map(range(char2nr('A'), char2nr('Z')), {k, v -> nr2char(v)}))
+  return sort(map(range(char2nr('a'), char2nr('z')), {k, v -> nr2char(v)}) + map(range(char2nr('A'), char2nr('Z')), {k, v -> nr2char(v)}) + ['.', '-', '_'])
 endfunction
 
 function! asyncomplete#sources#skk#disable() abort
