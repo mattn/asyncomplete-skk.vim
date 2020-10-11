@@ -26,7 +26,7 @@ function! s:completor(opt, ctx) abort
     return
   endif
   if !has_key(s:, 'jobid')
-    let s:jobid = async#job#start(['skk-cli', '-json'], {
+    let s:jobid = async#job#start(['skk-cli', '-json'] + get(g:, 'asyncomplete_skk_extra_args', []), {
     \ 'on_stdout': function('s:handle_stdout', [a:opt, a:ctx]),
     \ })
   endif
