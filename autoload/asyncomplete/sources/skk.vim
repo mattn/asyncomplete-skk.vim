@@ -26,7 +26,7 @@ function! s:completor(opt, ctx) abort
     return
   endif
   if !has_key(s:, 'jobid')
-    let s:jobid = async#job#start(['skk-cli', '-json'] + get(g:, 'asyncomplete_skk_extra_args', []), {
+    let s:jobid = asyncomplete#sources#skk#job#start(['skk-cli', '-json'] + get(g:, 'asyncomplete_skk_extra_args', []), {
     \ 'on_stdout': function('s:handle_stdout', [a:opt, a:ctx]),
     \ })
   endif
@@ -38,7 +38,7 @@ function! s:completor(opt, ctx) abort
   endif
   let l:base = getline('.')[l:startcol : col('.')]
   let s:startcol = l:startcol
-  call async#job#send(s:jobid, json_encode(#{text: l:base}) .. "\n")
+  call asyncomplete#sources#skk#job#send(s:jobid, json_encode(#{text: l:base}) .. "\n")
 endfunction
 
 function! s:filter(matches, startcol, base) abort
